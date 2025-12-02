@@ -1,8 +1,54 @@
 import Header from './header_footer/Header.jsx';
 import Footer from './header_footer/Footer.jsx';
 import styles from './signup.module.css';
+import { useState } from 'react';
 
 function SignUp() {
+
+    const [username, setUsername] = useState("");
+    const [fullName, setFullName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirm, setConfirm] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (password !== confirm) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const newUser = {
+            username,
+            full_name: fullName,
+            password
+        };
+
+        try {
+            const response = await fetch("http://localhost:8000/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newUser)
+            });
+
+            const data = await response.json();
+            console.log("Signup response:", data);
+
+            if (data.success) {
+                alert("Account created!");
+                window.location.href = "/signin";
+            } else {
+                alert("Signup failed");
+            }
+
+        } catch (error) {
+            console.error("Signup error:", error);
+            alert("An error occurred");
+        }
+    };
+
     return (
         <>
             <Header />
@@ -11,40 +57,45 @@ function SignUp() {
                 <div className={styles.card}>
                     <h1 className={styles.title}>Create an Account</h1>
 
-                    <form className={styles.form}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
+
                         <div className={styles.field}>
-                            <label htmlFor="username">Username</label>
+                            <label>Username</label>
                             <input 
-                                type="text" 
-                                id="username" 
-                                placeholder="Choose a username" 
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
                             />
                         </div>
 
                         <div className={styles.field}>
-                            <label htmlFor="name">Full Name</label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                placeholder="Enter your full name" 
+                            <label>Full Name</label>
+                            <input
+                                type="text"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
                             />
                         </div>
 
                         <div className={styles.field}>
-                            <label htmlFor="password">Password</label>
+                            <label>Password</label>
                             <input
                                 type="password"
-                                id="password"
-                                placeholder="Create a password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                         </div>
 
                         <div className={styles.field}>
-                            <label htmlFor="confirm">Confirm Password</label>
+                            <label>Confirm Password</label>
                             <input
                                 type="password"
-                                id="confirm"
-                                placeholder="Re-enter your password"
+                                value={confirm}
+                                onChange={(e) => setConfirm(e.target.value)}
+                                required
                             />
                         </div>
 
@@ -52,9 +103,6 @@ function SignUp() {
                             Sign Up
                         </button>
 
-                        <p className={styles.signInField}>
-                            Already have an account? <a href="/signin">Sign in</a>
-                        </p>
                     </form>
                 </div>
             </main>
