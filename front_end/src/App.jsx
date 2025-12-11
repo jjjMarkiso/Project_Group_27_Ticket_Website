@@ -6,6 +6,10 @@ import FilterPage from "./pages/filteredmain.jsx";
 import AccountPage from "./pages/account.jsx";
 import DetailsPage from "./pages/details.jsx";
 import BillingInfoPage from "./pages/billing.jsx";
+import EventDetails from "./pages/eventdetails.jsx";
+import SeatingChart from "./pages/seatingchart.jsx";
+import FilterSport from "./pages/filteredsports.jsx";
+import FilterFestival from "./pages/filterfestival.jsx";
 import './App.css'
 
 function App() {
@@ -20,6 +24,10 @@ function App() {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/billing" element={<BillingInfoPage />} />
+          <Route path="/event/:eventId" element={<EventDetails />} />
+          <Route path="/seats" element={<SeatingChart />} />
+          <Route path="/filtersport" element={<FilterSport />} />
+          <Route path="/filterfestival" element={<FilterFestival />} />
         </Routes>
       </Router>
     );
