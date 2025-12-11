@@ -24,7 +24,7 @@ function DetailsPage() {
         e.preventDefault();
 
         const storedUser = JSON.parse(localStorage.getItem("user"));
-
+        // Update data in the database
         const response = await fetch("http://localhost:8000/update-account", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ function DetailsPage() {
 
             <main className={styles.container}>
                 <h1 className={styles.title}>Profile Details</h1>
-
+                {/* Username field */}
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.field}>
                         <label>Username</label>
@@ -68,7 +68,7 @@ function DetailsPage() {
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
-
+                    {/* Full Name Field */}
                     <div className={styles.field}>
                         <label>Full Name</label>
                         <input
@@ -77,7 +77,7 @@ function DetailsPage() {
                             onChange={(e) => setFullName(e.target.value)}
                         />
                     </div>
-
+                    {/* Submit Button */}
                     <button type="submit" className={styles.saveButton}>
                         Save Changes
                     </button>

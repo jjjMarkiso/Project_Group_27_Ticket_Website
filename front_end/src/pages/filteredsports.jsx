@@ -1,22 +1,14 @@
 import Header from './header_footer/Header.jsx';
 import Footer from './header_footer/Footer.jsx';
 import styles from './main.module.css';
-import eventImg from '../assets/music1.png'
 import eventImg2 from '../assets/sports1.jpg'
-import eventImg3 from '../assets/festival1.jpg'
 import { Link } from "react-router-dom";
 
-function MainPage() {
+function FilterSport() {
 
-    const items = [{ itemName: "Concert A", itemId: "1", img: eventImg},
-        { itemName: "Concert B", itemId: "2", img: eventImg3},
-        { itemName: "Sports A", itemId: "3", img: eventImg2},
-        { itemName: "Concert D", itemId: "4", img: eventImg},
-        { itemName: "Concert E", itemId: "5", img: eventImg3},
-        { itemName: "Concert B", itemId: "6", img: eventImg2},
-        { itemName: "Concert C", itemId: "7", img: eventImg2},
-        { itemName: "Concert H", itemId: "8", img: eventImg},
-        { itemName: "Concert I", itemId: "9", img: eventImg3},]
+    const items = [{ itemName: "Sport A", itemId: "1", img: eventImg2},
+        { itemName: "Sport B", itemId: "4", img: eventImg2},
+        { itemName: "Sport C", itemId: "8", img: eventImg2},]
 
     return (
         <>
@@ -40,4 +32,4 @@ function MainPage() {
     );
 }
 
-export default MainPage;
+export default FilterSport;

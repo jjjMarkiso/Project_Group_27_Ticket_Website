@@ -1,25 +1,30 @@
 import Header from './header_footer/Header.jsx';
 import Footer from './header_footer/Footer.jsx';
 import styles from './main.module.css';
+import eventImg from '../assets/music1.png'
+import { Link } from "react-router-dom";
 
 function FilterPage() {
 
-    const items = [{ itemName: "Item 2", itemId: "2"},
-        { itemName: "Item 4", itemId: "4"},
-        { itemName: "Item 5", itemId: "5"},
-        { itemName: "Item 7", itemId: "7"},
-        { itemName: "Item 9", itemId: "9"},]
+    const items = [{ itemName: "Concert A", itemId: "1", img: eventImg},
+        { itemName: "Concert D", itemId: "4", img: eventImg},
+        { itemName: "Concert H", itemId: "8", img: eventImg},]
 
     return (
         <>
             <Header />            
 
             <div className={styles.container}>
-                {
-                    items.map((val) => {
-                        return <div className={styles.item}>{val.itemName}</div>
-                    })
-                }
+                {items.map((val) => (
+                    <Link 
+                        key={val.itemId} 
+                        to={`/event/${val.itemId}`} 
+                        className={styles.item}
+                    >
+                        <img src={val.img} className={styles.itemImage} />
+                        <h3>{val.itemName}</h3>
+                    </Link>
+                ))}
             </div>
 
             <Footer />
